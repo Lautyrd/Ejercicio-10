@@ -5,11 +5,31 @@ using System.Windows.Forms;
 
 namespace Ejercicio_10
 {
+	public class calculadora{
+			public double suma(double n1,double n2){
+				double auxsuma=(n1+n2);
+				return auxsuma;
+			}
+			public double resta(double n1,double n2){
+				double auxresta=(n1-n2);
+				return auxresta;
+			}
+			public double multiplicacion(double n1,double n2){
+				double auxmult=(n1*n2);
+				return auxmult;
+			}
+			public double division(double n1,double n2){
+				double auxdiv=(n1/n2);
+				return auxdiv;
+			}
+		}
 
 	public partial class MainForm : Form
 	{
 		double n1,n2;
 		string operador;
+		bool aux=false;
+		calculadora objcalculadora = new calculadora();
 		public MainForm()
 		{
 			
@@ -17,78 +37,86 @@ namespace Ejercicio_10
 			
 		
 		}
-		public class calculadora{
-			public double suma(double n1,double n2){
-				double auxsuma=(n1+n2);
-				return auxsuma;
-			}
-			public double resta(double n1,double n2){
-				double auxresta=(n1+n2);
-				return auxresta;
-			}
-			public double multiplicacion(double n1,double n2){
-				double auxmult=(n1+n2);
-				return auxmult;
-			}
-			public double division(double n1,double n2){
-				double auxdiv=(n1+n2);
-				return auxdiv;
-			}
-		}
+		
 		void Btn_clearClick(object sender, EventArgs e)
 		{
-			lbl_resultado.Text = "0";
-			lbl_cuenta.Text = "";
+			txt_resultado.Text = "0";
+			txt_cuenta.Text = "";
 		}
 		void Btn_unoClick(object sender, EventArgs e)
 		{
 			Button aux1 = (Button) sender;
-			if(lbl_resultado.Text == "0"){
-				lbl_resultado.Text = "";
+			if(txt_resultado.Text == "0"){
+				txt_resultado.Text = "";
 			}
-			lbl_resultado.Text += aux1.Text;
+			txt_resultado.Text += aux1.Text;
 		}
 		void Btn_deleteClick(object sender, EventArgs e)
 		{
-			if(lbl_resultado.Text.Length > 1){
-				lbl_resultado.Text = lbl_resultado.Text.Substring(0, lbl_resultado.Text.Length-1);
+			if(txt_resultado.Text.Length > 1){
+				txt_resultado.Text = txt_resultado.Text.Substring(0, txt_resultado.Text.Length-1);
 			}
 			else{
-				lbl_resultado.Text=("0");
+				txt_resultado.Text=("0");
 			}
 		}
 		void Btn_sumaClick(object sender, EventArgs e)
 		{
-			calculadora objcalculadora = new calculadora();
 			Button aux2 = (Button) sender;
-			lbl_cuenta.Text = lbl_resultado.Text;
-			lbl_cuenta.Text += aux2.Text;
-			operador = aux2.Text;
-			lbl_resultado.Text = "0";
-			switch (operador){
-				case "+" :
-					objcalculadora.suma(n1,n2);
+			
+			if(aux==true){
+				switch(operador){
+				
+				case "+":
+					txt_resultado.Text = Convert.ToString(objcalculadora.suma(n1,Convert.ToDouble(txt_resultado.Text)));
 					break;
-				case "-" :
-					objcalculadora.resta(n1,n2);
+				case "-":
+					txt_resultado.Text = Convert.ToString(objcalculadora.resta(n1,Convert.ToDouble(txt_resultado.Text)));
 					break;
-				case "*" :
-					objcalculadora.multiplicacion(n1,n2);
+				case "/":
+					txt_resultado.Text = Convert.ToString(objcalculadora.division(n1,Convert.ToDouble(txt_resultado.Text)));
 					break;
-				case "/" :
-					objcalculadora.division(n1,n2);
+				case "*":
+					txt_resultado.Text = Convert.ToString(objcalculadora.multiplicacion(n1,Convert.ToDouble(txt_resultado.Text)));
 					break;
+				}
 			}
+			txt_cuenta.Text = txt_resultado.Text;
+			txt_cuenta.Text += aux2.Text;
+			operador = aux2.Text;
+			n1 = Convert.ToDouble(txt_resultado.Text);
+			txt_resultado.Text = "0";
+			aux = true;
 		}
 		void Btn_cambsigClick(object sender, EventArgs e)
 		{
-			n1= Convert.ToDouble(lbl_resultado.Text);
+			n1= Convert.ToDouble(txt_resultado.Text);
 			n1= n1*(-1);
-			lbl_resultado.Text = Convert.ToString(n1);
+			txt_resultado.Text = Convert.ToString(n1);
 		}
 		void Btn_resultadoClick(object sender, EventArgs e)
 		{
-			
+			n2 = Convert.ToDouble(txt_resultado.Text);
+			txt_cuenta.Text +=n2.ToString()+"=";
+			switch(operador){
+				
+				case "+":
+					txt_resultado.Text = Convert.ToString(objcalculadora.suma(n1,n2));
+					break;
+				case "-":
+					txt_resultado.Text = Convert.ToString(objcalculadora.resta(n1,n2));
+					break;
+				case "/":
+					txt_resultado.Text = Convert.ToString(objcalculadora.division(n1,n2));
+					break;
+				case "*":
+					txt_resultado.Text = Convert.ToString(objcalculadora.multiplicacion(n1,n2));
+					break;
+			}
+			operador = "";
+			n1 = 0;
+			n2 = 0;
+			txt_cuenta.Text = "";
 		}
 		void keydown(object sender, KeyEventArgs e){
 			if(e.KeyCode == Keys.NumPad0 || e.KeyCode == Keys.D0){

@@ -14,7 +14,6 @@ namespace Ejercicio_10
 		/// Designer variable used to keep track of non-visual components.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
-		private System.Windows.Forms.Label lbl_resultado;
 		private System.Windows.Forms.Button btn_resultado;
 		private System.Windows.Forms.Button btn_suma;
 		private System.Windows.Forms.Button btn_resta;
@@ -33,8 +32,9 @@ namespace Ejercicio_10
 		private System.Windows.Forms.Button btn_seis;
 		private System.Windows.Forms.Button btn_siete;
 		private System.Windows.Forms.Button btn_ocho;
-		private System.Windows.Forms.Label lbl_cuenta;
 		private System.Windows.Forms.Button btn_nueve;
+		private System.Windows.Forms.TextBox txt_resultado;
+		private System.Windows.Forms.TextBox txt_cuenta;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -57,7 +57,6 @@ namespace Ejercicio_10
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.lbl_resultado = new System.Windows.Forms.Label();
 			this.btn_resultado = new System.Windows.Forms.Button();
 			this.btn_suma = new System.Windows.Forms.Button();
 			this.btn_resta = new System.Windows.Forms.Button();
@@ -77,18 +76,9 @@ namespace Ejercicio_10
 			this.btn_siete = new System.Windows.Forms.Button();
 			this.btn_ocho = new System.Windows.Forms.Button();
 			this.btn_nueve = new System.Windows.Forms.Button();
-			this.lbl_cuenta = new System.Windows.Forms.Label();
+			this.txt_resultado = new System.Windows.Forms.TextBox();
+			this.txt_cuenta = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
-			// 
-			// lbl_resultado
-			// 
-			this.lbl_resultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_resultado.Location = new System.Drawing.Point(3, 57);
-			this.lbl_resultado.Name = "lbl_resultado";
-			this.lbl_resultado.Size = new System.Drawing.Size(351, 61);
-			this.lbl_resultado.TabIndex = 0;
-			this.lbl_resultado.Text = "0";
-			this.lbl_resultado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// btn_resultado
 			// 
@@ -318,21 +308,35 @@ namespace Ejercicio_10
 			this.btn_nueve.Click += new System.EventHandler(this.Btn_unoClick);
 			this.btn_nueve.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keydown);
 			// 
-			// lbl_cuenta
+			// txt_resultado
 			// 
-			this.lbl_cuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-			this.lbl_cuenta.Location = new System.Drawing.Point(3, 9);
-			this.lbl_cuenta.Name = "lbl_cuenta";
-			this.lbl_cuenta.Size = new System.Drawing.Size(351, 48);
-			this.lbl_cuenta.TabIndex = 20;
-			this.lbl_cuenta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.txt_resultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
+			this.txt_resultado.Location = new System.Drawing.Point(3, 62);
+			this.txt_resultado.Multiline = true;
+			this.txt_resultado.Name = "txt_resultado";
+			this.txt_resultado.ReadOnly = true;
+			this.txt_resultado.Size = new System.Drawing.Size(349, 53);
+			this.txt_resultado.TabIndex = 21;
+			this.txt_resultado.Text = "0";
+			this.txt_resultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// txt_cuenta
+			// 
+			this.txt_cuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
+			this.txt_cuenta.Location = new System.Drawing.Point(3, 25);
+			this.txt_cuenta.Name = "txt_cuenta";
+			this.txt_cuenta.ReadOnly = true;
+			this.txt_cuenta.Size = new System.Drawing.Size(349, 31);
+			this.txt_cuenta.TabIndex = 22;
+			this.txt_cuenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(356, 463);
-			this.Controls.Add(this.lbl_cuenta);
+			this.Controls.Add(this.txt_cuenta);
+			this.Controls.Add(this.txt_resultado);
 			this.Controls.Add(this.btn_nueve);
 			this.Controls.Add(this.btn_ocho);
 			this.Controls.Add(this.btn_siete);
@@ -352,10 +356,10 @@ namespace Ejercicio_10
 			this.Controls.Add(this.btn_resta);
 			this.Controls.Add(this.btn_suma);
 			this.Controls.Add(this.btn_resultado);
-			this.Controls.Add(this.lbl_resultado);
 			this.Name = "MainForm";
 			this.Text = "Ejercicio 10";
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 	}
